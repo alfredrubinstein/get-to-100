@@ -16,7 +16,7 @@ function App() {
   const [elementoActivo, setElementoActivo] = useState(null);
   const [indexo, setIndexo] = useState(0);
   const [esTurnoActivo, setEsTurnoActivo] = useState(false); 
-
+  const [mostrarGanador, setMostrarGanador] = useState(false);
 
   const agregarNombre = () => {
     if (nombre !== '') {
@@ -100,8 +100,7 @@ function App() {
       const nombreGanador = campeon.nombre;
       campeon.rating = 0; 
       alert(`המנצח הוא ${nombreGanador}!`);
-      window.location.reload();
-      // return nombreGanador;
+      setMostrarGanador(true);
     } else {
       return null;
     }
@@ -172,12 +171,15 @@ function App() {
 
       {mostrarGaleria && (
         <div>
-          {checkGanador() ? (
+          {mostrarGanador ? (
+            <>
             <Ganador
               cerrarGaleria={cerrarGaleria}
               onVolverAJugar={reiniciarJuego}
               onSalir={() => setMostrarGaleria(false)}
             />
+
+          </>
           ) : (
             <Teclado
               onSumar={() => nextElement('sumar')}

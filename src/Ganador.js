@@ -16,7 +16,7 @@ function Ganador({ onVolverAJugar, onSalir }) {
   return (
     
     <div className="ganador-container">
-      <p>!נצחתה</p>
+      <p>!המשחק נגמר</p>
       <button className='button-ganador' onClick={handleVolverAJugar}>שחק שוב</button>
       <button className='button-ganador' onClick={handleSalir}>יציאה</button>
     </div>

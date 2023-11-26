@@ -1,3 +1,4 @@
+
 function Elemento({ id, nombre, rating, cambios, onDelete, isActive }) {
   const borrarElemento = () => {
     console.log('Borrarse (en Elemento)');
