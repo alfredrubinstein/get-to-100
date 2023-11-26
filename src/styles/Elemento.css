@@ -1,0 +1,12 @@
+.sacar{
+  float: left;
+}
+.elemento {
+  border: 1px solid #989898;
+  border-radius: 5px;
+  padding: 10px;
+background-color: #ffffff3a;
+}
+.elemento p {
+  margin: 5px 0;  
+}
