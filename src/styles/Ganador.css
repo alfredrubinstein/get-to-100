@@ -11,12 +11,12 @@
   align-items: center;
 }
 .ganador-container {
-  background-color: rgba(255, 255, 255, 0.815);
+  background-color: rgb(149, 149, 149);
   padding: 20px;
   text-align: center;
-  border: 1px solid white;
+  border: 10px double rgb(133, 133, 133);
   border-radius: 5px;
-  width: 400px;
+  width: 290px;
   position: relative;
   align-items: center;
   justify-content: center;

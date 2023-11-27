@@ -16,7 +16,7 @@ function App() {
   const [elementoActivo, setElementoActivo] = useState(null);
   const [indexo, setIndexo] = useState(0);
   const [esTurnoActivo, setEsTurnoActivo] = useState(false); 
-  const [mostrarGanador, setMostrarGanador] = useState(false);
+  const [mostrarGanador,setMostrarGanador]=useState(false);
 
   const agregarNombre = () => {
     if (nombre !== '') {
@@ -99,7 +99,7 @@ function App() {
     if (campeon) {
       const nombreGanador = campeon.nombre;
       campeon.rating = 0; 
-      alert(`המנצח הוא ${nombreGanador}!`);
+      alert(` :המנצח הוא ${nombreGanador}`);
       setMostrarGanador(true);
     } else {
       return null;
@@ -148,10 +148,15 @@ function App() {
 
 
 
-  const reiniciarJuego = () => {
-    console.log('reiniciarJuego (en App)');
-    window.location.reload();
+  const seguirJugando = () => {
+    setMostrarGanador(false);
+    nombres.forEach(objeto => {
+      objeto.rating = Math.floor(Math.random() * 99) + 1;
+      objeto.cambios = 0;
+    });
   };
+  
+  
 
  return (
     <div className='container'>
@@ -175,7 +180,7 @@ function App() {
             <>
             <Ganador
               cerrarGaleria={cerrarGaleria}
-              onVolverAJugar={reiniciarJuego}
+              onVolverAJugar={seguirJugando}
               onSalir={() => setMostrarGaleria(false)}
             />
 
@@ -206,11 +211,8 @@ function App() {
     isActive={elementoActivo === nombre.id}
   />
 ))}
-
 </div>
           <Champions />
-
-
         </div>
       )}
     </div>
