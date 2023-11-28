@@ -5,7 +5,7 @@ import Entrada from './Entrada';
 import Elemento from './Elemento';
 import Teclado from './Teclado';
 import Ganador from './Ganador';
-import Champions from './Champions';
+import Champion from './Champions';
 
 import './styles/App.css'; 
 
@@ -27,6 +27,7 @@ function App() {
         rating: Math.floor(Math.random() * 99) + 1,
         cambios: 0,
         nombre: nombre,
+        ganancias: 0,
       };
       setNombres([...nombres, nuevoNombre]);
       setNombre('');
@@ -60,26 +61,7 @@ function App() {
 
     setMostrarGaleria(true);
 
-
-
-
-
-
-
   }};
-
-
-
-
-
-
-
-
-
-
-
-
-  
 
   const cerrarGaleria=()=>{
     window.location.reload();}
@@ -98,7 +80,8 @@ function App() {
     const campeon = nombres.find((nombre1) => nombre1.rating === 100);
     if (campeon) {
       const nombreGanador = campeon.nombre;
-      campeon.rating = 0; 
+      campeon.rating = 0;
+      campeon.ganancias=+1; 
       alert(` :המנצח הוא ${nombreGanador}`);
       setMostrarGanador(true);
     } else {
@@ -181,7 +164,8 @@ function App() {
             <Ganador
               cerrarGaleria={cerrarGaleria}
               onVolverAJugar={seguirJugando}
-              onSalir={() => setMostrarGaleria(false)}
+              onSalir={() => {setMostrarGaleria(false);
+                window.location.reload();}}
             />
 
           </>
@@ -212,7 +196,10 @@ function App() {
   />
 ))}
 </div>
-          <Champions />
+<div className='campeon'>
+<h5>המובילים:</h5>
+          <Champion nombres={nombres} />
+        </div>
         </div>
       )}
     </div>

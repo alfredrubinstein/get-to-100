@@ -43,7 +43,15 @@ background-color: #ffffffb5;
 border-bottom: 5px solid rgba(255, 255, 255, 0.541);
 padding: 10px;
 } 
+.campeon{
+  padding-right: 5px;
+  margin: 0;
+font-size: 13px;
+  color: red;
+  padding-inline-start: 5px;
+  /* margin-block-start: 5px; */
 
+}
   
   
   

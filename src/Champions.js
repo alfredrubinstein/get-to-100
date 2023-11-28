@@ -1,48 +1,40 @@
+// Champions.js
 import React from 'react';
+import './styles/Champions.css'; 
 
-
-
-const guardarGanadorLocalStorage = (nombreGanador) => {
-  let ganadores = JSON.parse(localStorage.getItem('ganadores')) || [];
-  
-  const existingWinner = ganadores.find((ganador) => ganador.nombre === nombreGanador);
-  if (existingWinner) {
-    existingWinner.ganancias++;
-  } else {
-    ganadores.push({ nombre: nombreGanador, ganancias: 1 });
-  }
-
-  ganadores.sort((a, b) => b.ganancias - a.ganancias); 
-  localStorage.setItem('ganadores', JSON.stringify(ganadores.slice(0, 3))); 
-};
-
-
-const Champions = () => {
-  const obtenerTresMayoresGanadores = () => {
-console.log('entrada a local storage');
-    let ganadores = JSON.parse(localStorage.getItem('ganadores')) || [];
-    return ganadores.slice(0, 3);
+const Champion = ({ nombres }) => {
+  //REVISAR ARREGLAR ACA
+  const getTopChampions = () => {
+    const topChampions = [];
+    nombres.forEach((nombre) => {
+      const sortedGanancias = [...nombres]
+        .sort((a, b) => b.ganancias - a.ganancias)
+        .filter((n) => n.id !== nombre.id)
+        .slice(0, 3); // Obtener las tres unidades con ganancias más altas
+      topChampions.push({
+        nombre: nombre.nombre,
+        top: sortedGanancias,
+      });
+    });
+    return topChampions;
   };
 
-  const renderChampions = () => {
-    const tresMayoresGanadores = obtenerTresMayoresGanadores();
-    if (tresMayoresGanadores.length < 1) {
-      return null; 
-    }
-    return (
-      <div className="champions">
-        <h2>שחקני המאה!</h2>
-        {tresMayoresGanadores.map((ganador, index) => (
-          <div key={index}>
-            <p>שם: {ganador.nombre}</p>
-            <p>מספר נצחונות: {ganador.ganancias}</p>
-          </div>
-        ))}
-      </div>
-    );
-  };
+  const champions = getTopChampions();
 
-  return <div>{renderChampions()}</div>;
+  return (
+    <div className="champions">
+      {champions.map((champ, index) => (
+        <div key={index}>
+          <ul>
+              <li><h6>
+                {champ.nombre} 
+                {/* - {champ.ganancias} */}
+              </h6></li>
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
 };
 
-export default Champions;
+export default Champion;
